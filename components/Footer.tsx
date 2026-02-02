@@ -5,10 +5,19 @@ import { Locale } from "@/i18n";
 import { Facebook, Github, LucideIcon, Rss } from "lucide-react";
 import Link from "next/link";
 import { Dict } from "@/types/dict";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface FooterProps {
   locale: Locale;
   dict: Dict;
+  recentPosts: {
+    id: string;
+    title: string;
+    slug: string;
+    dateLabel: string;
+    coverUrl?: string | null;
+  }[];
 }
 
 const socialIcons: { icon: LucideIcon; href: string; label: string }[] = [
@@ -17,8 +26,15 @@ const socialIcons: { icon: LucideIcon; href: string; label: string }[] = [
   { icon: Rss, href: "#", label: "RSS" },
 ];
 
-const Footer = ({ dict, locale }: FooterProps) => {
+const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
+  const pathname = usePathname();
   const buildHref = (path: string) => `/${locale}${path ? `/${path}` : ""}`;
+
+  const menuLinks = [
+    { label: dict.nav.home, href: "" },
+    { label: dict.nav.videos, href: "videos" },
+    { label: dict.nav.archive, href: "archive" },
+  ];
 
   const pagesLinks = [
     { label: dict.footer.pages.about, href: "about" },
@@ -44,6 +60,50 @@ const Footer = ({ dict, locale }: FooterProps) => {
                 <Link key={item.label} href={item.href}>
                   <item.icon className="h-4 w-4" />
                 </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-4 md:col-span-4">
+            <div className="grid gap-4 sm:grid-cols-3">
+              {recentPosts.map((post) => (
+                <article
+                  key={post.id}
+                  className=" flex  flex-col mb-4 
+                            overflow-hidden rounded-3xl border bg-mycolor1/60
+                            border-mycolor2/10"
+                >
+                  <div className="relative h-20 w-full">
+                    <Image
+                      src={post.coverUrl || "/bg.jpg"}
+                      alt={post.title}
+                      fill
+                      className="object-cover w-auto h-16"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col gap-4 px-5 pt-4">
+                    <span
+                      className="inline-flex w-fit items-center 
+                                rounded-full bg-mycolor2 px-3 py-1 text-sm
+                                font-semibold uppercase tracking-wide text-mycolor1"
+                    >
+                      {post.category || (locale === "az" ? "Genel" : "General")}
+                    </span>
+                    <h3 className="text-lg font-semibold leading-snug">
+                      {post.title}
+                    </h3>
+                    <p className="text-sm text-mycolor2/70 line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <div
+                      className="mt-auto mb-2 flex items-center justify-between pt-2 
+                                text-[11px] font-medium text-mycolor2/60"
+                    >
+                      <span>{post.dateLabel}</span>
+                      <span>{post.readingTimeLabel}</span>
+                    </div>
+                  </div>
+                </article>
               ))}
             </div>
           </div>

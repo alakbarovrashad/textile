@@ -1,0 +1,19 @@
+drop table if exists about_page;
+
+create table about_page (
+  id uuid primary key default gen_random_uuid(),
+  locale text not null, 
+ 
+  hero_title text not null,     -- "Hi I'm Rashad"
+  hero_subtitle text,           -- "Full Stack Developer | Content Creator | Web Pentester"
+  hero_caption text,            -- "alt kisim, Lorem ipsum dolor..."
+  hero_paragraph1 text,
+  hero_paragraph2 text,
+  hero_paragraph3 text,
+  hero_cta_label text,          -- "Let's work together"
+  hero_cta_url text,            -- "opsionel contact gibi"
+
+  updated_at timestamp default now()
+);
+
+create index about_page_locale_idx on about_page(locale);

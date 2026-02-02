@@ -1,0 +1,12 @@
+create table post_translations (
+  id uuid primary key default gen_random_uuid(),
+  post_id uuid references posts(id) on delete cascade,
+  locale text not null,
+  title text not null,
+  slug text not null,
+  excerpt text,
+  content text,
+  created_at timestamp default now()
+);
+
+create index post_translations_slug_idx on post_translations(slug);

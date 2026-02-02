@@ -4,35 +4,35 @@ import { i18n } from "./i18n";
 
 
 export function proxy(request:NextRequest){
-      const { pathname } = request.nextUrl;
+    const { pathname } = request.nextUrl;
 
-      if(pathname.startsWith("/admin")){
+    if(pathname.startsWith("/admin")){
+    return NextResponse.next();
+    }
+
+    if (
+        pathname.startsWith("/_next") ||
+        pathname.startsWith("/api") ||
+        pathname.includes(".")
+    ) {
         return NextResponse.next();
-      }
+    }
 
-        if (
-            pathname.startsWith("/_next") ||
-            pathname.startsWith("/api") ||
-            pathname.includes(".")
-        ) {
-            return NextResponse.next();
-        }
+    const hasLocale = i18n.locales.some((locale) =>
+        pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+    );
 
-        const hasLocale = i18n.locales.some((locale) =>
-            pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
+    if (!hasLocale) {
+        const locale = i18n.defaultLocale;
+
+        return NextResponse.redirect(
+            new URL(
+                `/${locale}${pathname === "/" ? "" : pathname}`,
+                request.url
+            )
         );
-
-        if (!hasLocale) {
-            const locale = i18n.defaultLocale;
-
-            return NextResponse.redirect(
-                new URL(
-                    `/${locale}${pathname === "/" ? "" : pathname}`,
-                    request.url
-                )
-            );
-        }
-        return NextResponse.next();
+    }
+    return NextResponse.next();
 
 }
 
