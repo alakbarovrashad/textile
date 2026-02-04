@@ -26,7 +26,7 @@ export async function GET(req:Request, context: {params: Promise<{id:string}>}) 
           return NextResponse.json({ error: "Post not found" }, { status: 404 }); 
     }
 
-    const tr = data.post_translations.find((t)=>t.locale === "az") || {};
+    const tr = data.post_translations.find((t)=>t.locale === "tr") || {};
     const en = data.post_translations.find((t)=>t.locale === "en") || {};
 
     return NextResponse.json({
@@ -70,7 +70,7 @@ export async function PUT(req:Request, context: {params: Promise<{id:string}>}) 
 
     const translationsArray = Object.entries(translations)
     .filter(([locale, t]: any) => {
-      if (locale === "az") return true;
+      if (locale === "tr") return true;
       return t.title || t.slug || t.excerpt || t.content;
     })
     .map(([locale, t]: any) => ({

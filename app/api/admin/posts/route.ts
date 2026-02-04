@@ -99,7 +99,7 @@ export async function POST(req: Request) {
 
       const translationsArray = Object.entries(translations)
         .filter(([locale, t]:any)=>{
-            if(locale ==="az") return true;
+            if(locale ==="tr") return true;
 
             return (t.title || t.slug || t.excerpt || t.content)
         })

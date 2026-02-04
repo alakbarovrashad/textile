@@ -6,7 +6,9 @@ create table post_translations (
   slug text not null,
   excerpt text,
   content text,
-  created_at timestamp default now()
+  created_at timestamp default now(),
+  unique(post_id, locale),
+  unique(slug, locale)
 );
 
 create index post_translations_slug_idx on post_translations(slug);

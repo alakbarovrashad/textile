@@ -15,7 +15,7 @@ type AboutData = {
 };
 
 const AboutPage = () => {
-  const [locale, setLocale] = useState<"az" | "en">("en");
+  const [locale, setLocale] = useState<"tr" | "en">("en");
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [data, setData] = useState<AboutData>({
@@ -95,8 +95,8 @@ const AboutPage = () => {
 
       <div className="flex gap-4 mb-4">
         <Button
-          className={locale === "az" ? "underline font-semibold" : ""}
-          onClick={() => setLocale("az")}
+          className={locale === "tr" ? "underline font-semibold" : ""}
+          onClick={() => setLocale("tr")}
         >
           AZ
         </Button>

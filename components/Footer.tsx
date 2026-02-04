@@ -17,6 +17,10 @@ interface FooterProps {
     slug: string;
     dateLabel: string;
     coverUrl?: string | null;
+
+    category?: string;
+    excerpt?: string;
+    readingTimeLabel?: string;
   }[];
 }
 
@@ -87,7 +91,7 @@ const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
                                 rounded-full bg-mycolor2 px-3 py-1 text-sm
                                 font-semibold uppercase tracking-wide text-mycolor1"
                     >
-                      {post.category || (locale === "az" ? "Genel" : "General")}
+                      {post.category || (locale === "tr" ? "Genel" : "General")}
                     </span>
                     <h3 className="text-lg font-semibold leading-snug">
                       {post.title}

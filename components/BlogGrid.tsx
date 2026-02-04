@@ -52,7 +52,7 @@ const BlogGrid = ({ posts, locale }: BlogGridProps) => {
                                 rounded-full bg-mycolor2 px-3 py-1 text-sm
                                 font-semibold uppercase tracking-wide text-mycolor1"
                 >
-                  {post.category || (locale === "az" ? "Ümumi" : "General")}
+                  {post.category || (locale === "tr" ? "Ümumi" : "General")}
                 </span>
                 <h3 className="text-lg font-semibold leading-snug">
                   {post.title}

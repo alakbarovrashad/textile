@@ -1,7 +1,8 @@
 create table posts (
   id uuid primary key default gen_random_uuid(),
   cover_url text,
-  category text,
+  category text not null,
   published boolean default false,
+  reading_time int,
   created_at timestamp default now()
 );

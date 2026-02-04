@@ -93,7 +93,7 @@ const Header = ({ dict, locale }: HeaderProps) => {
             <SelectContent>
               <SelectGroup>
                 <SelectItem value="en">EN</SelectItem>
-                <SelectItem value="az">AZ</SelectItem>
+                <SelectItem value="tr">AZ</SelectItem>
                 <SelectItem value="ru">RU</SelectItem>
               </SelectGroup>
             </SelectContent>

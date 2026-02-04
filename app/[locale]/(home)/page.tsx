@@ -69,7 +69,7 @@ export default async function Home({ params }: HomePageProps) {
       if (!t) return null;
       const created = new Date(p.created_at);
       const dateLabel = created.toLocaleDateString(
-        locale === "az" ? "az-AZ" : "en-US",
+        locale === "tr" ? "tr-TR" : "en-US",
         {
           day: "2-digit",
           month: "short",
@@ -78,7 +78,7 @@ export default async function Home({ params }: HomePageProps) {
       );
 
       const readingTimeLabel = p.reading_time
-        ? `${p.reading_time} ${locale === "az" ? "DK OKUMA" : "MIN READ"}`
+        ? `${p.reading_time} ${locale === "tr" ? "DK OKUMA" : "MIN READ"}`
         : "";
 
       return {

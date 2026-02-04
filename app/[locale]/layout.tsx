@@ -65,7 +65,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
       if (!t) return null;
       const created = new Date(p.created_at);
       const dateLabel = created.toLocaleDateString(
-        locale === "az" ? "az-AZ" : "en-US",
+        locale === "tr" ? "tr-TR" : "en-US",
         {
           day: "2-digit",
           month: "short",
@@ -74,7 +74,7 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
       );
 
       const readingTimeLabel = p.reading_time
-        ? `${p.reading_time} ${locale === "az" ? "DK OKUMA" : "MIN READ"}`
+        ? `${p.reading_time} ${locale === "tr" ? "DK OKUMA" : "MIN READ"}`
         : "";
 
       return {
