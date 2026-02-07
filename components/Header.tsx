@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import { Dict } from "@/types/dict";
+import Logo from "./Logo";
 
 interface HeaderProps {
   locale: Locale;
@@ -27,10 +28,8 @@ const Header = ({ dict, locale }: HeaderProps) => {
 
   const navItems = [
     { label: dict.nav.home, href: "" },
-    { label: dict.nav.videos, href: "videos" },
-    { label: dict.nav.archive, href: "archive" },
-    { label: dict.nav.tags, href: "tags" },
-    { label: dict.nav.about, href: "about" },
+    { label: dict.nav.about, href: "#about" },
+    { label: dict.nav.products, href: "#products" },
   ];
 
   const buildHref = (path: string) => `/${locale}${path ? `/${path}` : ""}`;
@@ -57,11 +56,7 @@ const Header = ({ dict, locale }: HeaderProps) => {
   return (
     <header className="border-b bg-mycolor1 text-mycolor2">
       <div className="mx-auto flex items-center justify-between px-4 lg:px-8 py-6">
-        <div>
-          <Link href={buildHref("")} className="text-2xl font-semibold ">
-            Logo
-          </Link>
-        </div>
+        <Logo href={buildHref("")} className="text-2xl" />
 
         <nav className="lg:flex hidden items-center gap-2 text-sm">
           {navItems.map((item, idx) => {
@@ -93,7 +88,7 @@ const Header = ({ dict, locale }: HeaderProps) => {
             <SelectContent>
               <SelectGroup>
                 <SelectItem value="en">EN</SelectItem>
-                <SelectItem value="tr">AZ</SelectItem>
+                <SelectItem value="az">AZ</SelectItem>
                 <SelectItem value="ru">RU</SelectItem>
               </SelectGroup>
             </SelectContent>

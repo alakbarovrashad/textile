@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Dict } from "@/types/dict";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 interface FooterProps {
   locale: Locale;
@@ -34,16 +35,11 @@ const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
   const pathname = usePathname();
   const buildHref = (path: string) => `/${locale}${path ? `/${path}` : ""}`;
 
-  const menuLinks = [
-    { label: dict.nav.home, href: "" },
-    { label: dict.nav.videos, href: "videos" },
-    { label: dict.nav.archive, href: "archive" },
-  ];
+  const menuLinks = [{ label: dict.nav.home, href: "" }];
 
   const pagesLinks = [
-    { label: dict.footer.pages.about, href: "about" },
-    { label: dict.footer.pages.contact, href: "contact" },
-    { label: dict.footer.pages.elements, href: "elements" },
+    { label: dict.footer.pages.about, href: "#about" },
+    { label: dict.nav.products, href: "#products" },
   ];
 
   const year = new Date().getFullYear();
@@ -54,7 +50,7 @@ const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
         <div className="grid gap-10 md:grid-cols-8">
           <div className="space-y-4 md:col-span-2">
             <h2 className="text-2xl font-semibold tracking-tight">
-              {dict.site.title}
+              <Logo />
             </h2>
             <p className="max-w-md text-sm leading-relaxed text-mycolor2/70">
               {dict.site.description}
@@ -91,7 +87,12 @@ const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
                                 rounded-full bg-mycolor2 px-3 py-1 text-sm
                                 font-semibold uppercase tracking-wide text-mycolor1"
                     >
-                      {post.category || (locale === "tr" ? "Genel" : "General")}
+                      {post.category ||
+                        (locale === "az"
+                          ? "Ümumi"
+                          : locale === "ru"
+                            ? "Общий"
+                            : "General")}
                     </span>
                     <h3 className="text-lg font-semibold leading-snug">
                       {post.title}
@@ -142,12 +143,15 @@ const Footer = ({ dict, locale, recentPosts }: FooterProps) => {
 
         <div className="mt-4 flex flex-col items-center justify-between gap-2 text-xs text-mycolor2/60 md:flex-row">
           <p>
-            {year} © <span className="font-semibold">{dict.site.title}</span>.{" "}
-            {dict.footer.copyrightPrefix}
+            {year} &copy;{" "}
+            <span className="font-semibold">
+              <Logo href={buildHref("")} className="text-sm" /> MMC
+            </span>
+            . {dict.footer.copyrightPrefix}
           </p>
           <p>
             {dict.footer.publishedWith}{" "}
-            <span className="font-semibold">Next.js&nbsp;16</span>.
+            <span className="font-semibold">Rashad Alakbarov</span>.
           </p>
         </div>
       </div>

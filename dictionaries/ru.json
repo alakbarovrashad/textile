@@ -1,14 +1,12 @@
 {
   "site": {
-    "title": "Kolay Başlangıç rus",
-    "description": "Bu site Türkçe ana sayfa örneğidir."
+    "description": "Этот сайт посвящен текстилю. Здесь вы найдете самые новые товары.",
+    "latestProducts": "Последние товары"
   },
   "nav": {
-    "home": "Ana Sayfa",
-    "videos": "Videolar",
-    "archive": "Arşiv",
-    "tags": "Etiketler",
-    "about": "Hakkımda"
+    "home": "Главная страница",
+    "about": "О нас",
+    "products": "Продукты"
   },
    "footer": {
     "recentPostsTitle": "Son Yazılar",
@@ -19,7 +17,7 @@
       "contact": "İletişim",
       "elements": "Bileşenler"
     },
-    "copyrightPrefix": "Tüm hakları saklıdır.",
-    "publishedWith": "Yayın altyapısı"
+    "copyrightPrefix": "Все права защищены.",
+    "publishedWith": "Опубликовано с помощью"
   }
 }

@@ -1,14 +1,12 @@
 {
   "site": {
-    "title": "Easy Start",
-    "description": "This is an example English homepage."
+    "description": "This website focuses on textiles. You can find the latest products here.",
+    "latestProducts": "Latest Products"
   },
     "nav": {
     "home": "Home",
-    "videos": "Videos",
-    "archive": "Archive",
-    "tags": "Tags",
-    "about": "About"
+    "about": "About Us",
+    "products": "Products"
   },
     "footer": {
     "recentPostsTitle": "Recent Posts",

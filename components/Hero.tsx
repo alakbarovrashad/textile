@@ -20,7 +20,10 @@ interface HeroProps {
 
 const Hero = ({ content }: HeroProps) => {
   return (
-    <div className="flex border max-w-7xl mx-auto mt-8 bg-mycolor1/80 rounded-4xl text-mycolor2 py-16">
+    <div
+      className="flex border max-w-7xl mx-auto mt-8 bg-mycolor1/80 rounded-4xl text-mycolor2 py-16"
+      id="about"
+    >
       <div className="mx-auto px-10 py-4 flex flex-col lg:flex-row gap-10">
         <div className="flex-1">
           <div className="rounded-2xl overflow-hidden bg-mycolor2/10 border border-mycolor2/10">
@@ -38,13 +41,6 @@ const Hero = ({ content }: HeroProps) => {
         </div>
 
         <div className="flex-1 flex flex-col justify-center space-y-6">
-          <Image
-            src="/meow.jpg"
-            alt="Workspace"
-            width={80}
-            height={80}
-            className="rounded-full border border-mycolor2/10"
-          />
           <h1 className="text-5xl font-semibold">{content.hero_title}</h1>
 
           <h2 className="text-xl font-medium text-mycolor2/80">

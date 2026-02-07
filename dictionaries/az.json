@@ -1,25 +1,23 @@
 {
   "site": {
-    "title": "Kolay Başlangıç",
-    "description": "Bu site Türkçe ana sayfa örneğidir."
+    "description": "Bu veb sayt tekstil məhsullarına yönəlib. Ən son məhsulları burada tapa bilərsiniz.",
+    "latestProducts": "Ən son məhsullar"
   },
   "nav": {
-    "home": "Ana Sayfa",
-    "videos": "Videolar",
-    "archive": "Arşiv",
-    "tags": "Etiketler",
-    "about": "Hakkımda"
+    "home": "Ana Səhifə",
+    "about": "Haqqımızda",
+    "products": "Məhsullar"
   },
-   "footer": {
+  "footer": {
     "recentPostsTitle": "Son Yazılar",
     "menuTitle": "Menü",
     "pagesTitle": "Sayfalar",
     "pages": {
-      "about": "Hakkımda",
-      "contact": "İletişim",
-      "elements": "Bileşenler"
+        "about": "Hakkımda",
+        "contact": "İletişim",
+        "elements": "Bileşenler"
     },
-    "copyrightPrefix": "Tüm hakları saklıdır.",
-    "publishedWith": "Yayın altyapısı"
+    "copyrightPrefix": "Bütün hüquqlar qorunur.",
+    "publishedWith": "Nəşr olunub"  
   }
 }

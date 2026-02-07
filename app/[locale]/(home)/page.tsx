@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import BlogGrid from "@/components/BlogGrid";
 import { i18n, Locale } from "@/i18n";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { getDictionary } from "@/lib/dictionaries";
 
 interface HomePageProps {
   params: Promise<{ locale: Locale }>;
@@ -28,6 +29,19 @@ export function generateStaticParams() {
 
 export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
+  const dict = await getDictionary(locale);
+
+  const localeMap: Record<Locale, string> = {
+    az: "az-AZ",
+    ru: "ru-RU",
+    en: "en-US",
+  };
+
+  const readLabelMap: Record<Locale, string> = {
+    az: "DK OXU",
+    ru: "МИН ЧТЕНИЯ",
+    en: "MIN READ",
+  };
 
   const { data } = await supabaseAdmin
     .from("about_page")
@@ -68,17 +82,14 @@ export default async function Home({ params }: HomePageProps) {
 
       if (!t) return null;
       const created = new Date(p.created_at);
-      const dateLabel = created.toLocaleDateString(
-        locale === "tr" ? "tr-TR" : "en-US",
-        {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        },
-      );
+      const dateLabel = created.toLocaleDateString(localeMap[locale], {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
 
       const readingTimeLabel = p.reading_time
-        ? `${p.reading_time} ${locale === "tr" ? "DK OKUMA" : "MIN READ"}`
+        ? `${p.reading_time} ${readLabelMap[locale]}`
         : "";
 
       return {
@@ -107,9 +118,8 @@ export default async function Home({ params }: HomePageProps) {
       <Hero
         content={
           data || {
-            hero_title: "Hi! I’m Görkem 👋",
-            hero_subtitle:
-              "Full Stack Developer | Content Creator | Web Pentester",
+            hero_title: "Hi! I’m Textile MMC 👋",
+            hero_subtitle: "We sell products",
             hero_caption: "Lorem ipsum dolor...",
             hero_paragraph1: "Lorem ipsum dolor sit amet...",
             hero_paragraph2: "Aliquam at leo risus...",
@@ -119,7 +129,7 @@ export default async function Home({ params }: HomePageProps) {
           }
         }
       />
-      <BlogGrid locale={locale} posts={blogPosts} />
+      <BlogGrid locale={locale} posts={blogPosts} dict={dict} />
     </>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Locale } from "@/i18n";
 import Image from "next/image";
+import { Dict } from "@/types/dict";
 
 export interface BlogGridPost {
   id: string;
@@ -16,17 +17,16 @@ export interface BlogGridPost {
 interface BlogGridProps {
   posts: BlogGridPost[];
   locale: Locale;
+  dict: Dict;
 }
 
-const BlogGrid = ({ posts, locale }: BlogGridProps) => {
+const BlogGrid = ({ posts, locale, dict }: BlogGridProps) => {
   return (
-    <section className="text-mycolor2 py-16">
+    <section className="text-mycolor2 py-16" id="products">
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-8 flex items-center justify-between gap-4">
-          <h2>Latest Post</h2>
-          <p className="text-sm text-mycolor2/70">
-            Lorem ipsum dolor sit amet.
-          </p>
+          <h2 className="font-bold text-xl">{dict.site.latestProducts}</h2>
+          <p className="text-sm text-mycolor2/70"></p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -52,7 +52,12 @@ const BlogGrid = ({ posts, locale }: BlogGridProps) => {
                                 rounded-full bg-mycolor2 px-3 py-1 text-sm
                                 font-semibold uppercase tracking-wide text-mycolor1"
                 >
-                  {post.category || (locale === "tr" ? "Ümumi" : "General")}
+                  {post.category ||
+                    (locale === "az"
+                      ? "Ümumi"
+                      : locale === "ru"
+                        ? "Общий"
+                        : "General")}
                 </span>
                 <h3 className="text-lg font-semibold leading-snug">
                   {post.title}

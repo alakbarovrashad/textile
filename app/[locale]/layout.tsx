@@ -33,6 +33,18 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
   const { locale } = await params;
   const dict = await getDictionary(locale);
 
+  const localeMap: Record<Locale, string> = {
+    az: "az-AZ",
+    ru: "ru-RU",
+    en: "en-US",
+  };
+
+  const readLabelMap: Record<Locale, string> = {
+    az: "DK OXU",
+    ru: "МИН ЧТЕНИЯ",
+    en: "MIN READ",
+  };
+
   const { data: postsData } = await supabaseAdmin
     .from("posts")
     .select(
@@ -64,17 +76,14 @@ const LocaleLayout = async ({ children, params }: LocaleLayoutProps) => {
 
       if (!t) return null;
       const created = new Date(p.created_at);
-      const dateLabel = created.toLocaleDateString(
-        locale === "tr" ? "tr-TR" : "en-US",
-        {
-          day: "2-digit",
-          month: "short",
-          year: "numeric",
-        },
-      );
+      const dateLabel = created.toLocaleDateString(localeMap[locale], {
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      });
 
       const readingTimeLabel = p.reading_time
-        ? `${p.reading_time} ${locale === "tr" ? "DK OKUMA" : "MIN READ"}`
+        ? `${p.reading_time} ${readLabelMap[locale]}`
         : "";
 
       return {

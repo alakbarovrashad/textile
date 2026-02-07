@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
 import { Dict } from "@/types/dict";
+import Logo from "./Logo";
 
 interface MobileMenuProps {
   locale: Locale;
@@ -23,10 +24,8 @@ const MobileMenu = ({ dict, locale }: MobileMenuProps) => {
 
   const navItems = [
     { label: dict.nav.home, href: "" },
-    { label: dict.nav.videos, href: "videos" },
-    { label: dict.nav.archive, href: "archive" },
-    { label: dict.nav.tags, href: "tags" },
-    { label: dict.nav.about, href: "about" },
+    { label: dict.nav.about, href: "#about" },
+    { label: dict.nav.products, href: "#products" },
   ];
 
   const buildHref = (path: string) => `/${locale}${path ? `/${path}` : ""}`;
@@ -45,7 +44,9 @@ const MobileMenu = ({ dict, locale }: MobileMenuProps) => {
       </SheetTrigger>
       <SheetContent className="px-4">
         <SheetHeader>
-          <SheetTitle>Logo</SheetTitle>
+          <SheetTitle>
+            <Logo href={buildHref("")} className="text-2xl" />
+          </SheetTitle>
         </SheetHeader>
 
         {navItems.map((item, idx) => {
